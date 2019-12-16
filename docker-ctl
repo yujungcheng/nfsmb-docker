@@ -4,7 +4,7 @@ set -o pipefail
 
 image="centos7-nfs-smb"
 tag="1.0"
-name="my-server"
+name="nfs-smb-server"
 
 
 if [[ "${1}" == "build" ]]; then
