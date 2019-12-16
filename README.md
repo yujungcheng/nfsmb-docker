@@ -2,16 +2,16 @@
 # NFS & SAMBA Docker Tool-kit
 Docker image to run NFS and SAMBA service.
 
-### Build Tool-kit 工具指令
-NFS&SAMBA Docker Tool-kit 目錄下的 docker-ctl 提供以下功能，自動化build/run/stop/exec操作指令。
-- 建立 CcentOS7 的 NFS 與 SAMBA Docker Image
-- 刪除 Docker Image
-- 啟動 Container   依照Container內要開啟的Service類型映射對應的端口。
-- 停止 Container   停止並刪除 Container
-- 執行 Container 內的指令或程式
+### Build Tool-kit sub-commands
+In NFS&SAMBA Docker Tool-kit directory, docker-ctl provides functions to automatically build, run, stop and exec operations.
+- Build NFS and SAMBA Docker Image base on CcentOS7
+- Delete Docker Image
+- Start Container (Auto config default service port mapping)
+- Stop Container (stop and delete container)
+- Execute commands in the Container
 
 
-docker-ctl 指令參數:
+**docker-ctl** command arguments:
 ```
 build 
 run [ nfs | smb | nfsmb ] [ <host-dir-path>:<container-dir-path>:<permission> ]
@@ -20,15 +20,15 @@ exec <command and arguments>
 status
 ```
 
-Took-kit 所建立的 Docker Image 會包進下列3個指令，提供NFS/SAMBA的基本設定與服務啟動/關閉。
-- server-run   啟動與關閉 NFS/SAMBA 服務
-    - 參數: [ status | restart | stop ] (無帶入參數時為啟動服務)
-    - 範例1: ./server-run status
-- config-nfs   設定 /etc/exports
-    - 參數: [ add | del ] <export-path> <export-options>
-    - 範例1: ./config-nfs add /mnt (rw,async,norootsquash)
-    - 範例2: ./config-nfs del /mnt
-- config-smb   設定 /etc/samba/smb.conf (只提供匿名登入設定)
-    - 參數: [ add | del ] <share-name> <share-path>
-    - 範例1: ./config-smb add myshare1 /mnt
-    - 範例2: ./config-smb del myshare1
+The Tool-kit will build a Docker Image with three commands below to provide basic NFS/SAMBA config and service start/stop.
+- server-run   Start and Stop NFS/SAMBA Service
+    - Arguments: [ status | restart | stop ] (Start services when no arugment specified)
+    - Example: ./server-run status
+- config-nfs   Configure /etc/exports
+    - Arguments: [ add | del ] <export-path> <export-options>
+    - Exmaple1: ./config-nfs add /mnt (rw,async,norootsquash)
+    - Example2: ./config-nfs del /mnt
+- config-smb   Configure /etc/samba/smb.conf (Only provide anonymous access)
+    - Arguments: [ add | del ] <share-name> <share-path>
+    - Example1: ./config-smb add myshare1 /mnt
+    - Example2: ./config-smb del myshare1
