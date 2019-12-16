@@ -38,4 +38,8 @@ COPY config-nfs /bin
 COPY config-smb /bin
 COPY server-run /bin
 
+RUN chmod 755 /bin/config-nfs
+RUN chmod 755 /bin/config-smb
+RUN chmod 755 /bin/server-run
+
 ENTRYPOINT ["/usr/sbin/init"]
